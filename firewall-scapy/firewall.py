@@ -47,12 +47,10 @@ def firewall(pkt):
 					DictOfPackets[sca.src].append(time.time())
 			else:
 				DictOfPackets[sca.src] = [time.time()]
-
-		#print("Packet from %s accepted and forwarded to IPTABLES" %(sca.src))		
+	
 		pkt.accept()
 		return 
 	
-	#print("Packet from %s accepted and forwarded to IPTABLES" %(sca.src)) #commented coz its annoying
 	pkt.accept()
 
 nfqueue = NetfilterQueue()
@@ -65,7 +63,7 @@ except KeyboardInterrupt:
 
 nfqueue.unbind()
 try:
-    f = open("firewallrules.json","r")
+    f = open("sample_rules.json","r")
     y = json.load(f)
     f.close()
     if("ListOfBannedIpAddr" in y):
